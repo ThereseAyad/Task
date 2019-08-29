@@ -6,19 +6,21 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User
 from .serializers import UserSerializer
 from rest_framework import viewsets
+from django.http import JsonResponse
+
 
 def MyProfileView(request):
     if request.user.is_anonymous is True:
         return redirect('Task:login')
 
-    return render(request, 'Task/profile.html', {'current_user':request.user})
+    return render(request, 'Task/profile.html', {'current_user': request.user})
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
 
 
-# user
 class UserFormView(View):
     template_name = 'Task/registration_form.html'
     form_class = UserForm
@@ -35,12 +37,12 @@ class UserFormView(View):
             # clean data
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            #pass in the password
+            # pass in the password
             user.set_password(password)
-            #save user to database
+            # save user to database
             user.save()
 
-            #check in database to see if they exist
+            # check in database to see if they exist
             user = authenticate(username=username, password=password)
             if user is not None:
                 if user.is_active:
@@ -50,11 +52,13 @@ class UserFormView(View):
 
         return render(request, self.template_name, {'form': form})
 
+
 def home(request):
     if request.user.is_anonymous is True:
         return redirect('login')
     template = 'Task/home.html'
     return render(request, template)
+
 
 def simple_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
@@ -66,3 +70,13 @@ def simple_upload(request):
             'uploaded_file_url': uploaded_file_url
         })
     return render(request, 'Task/simple_upload.html')
+
+
+def validate_username(request):
+    username = request.GET.get('username', None)
+    data = {
+        'is_taken': User.objects.filter(username__iexact=username).exists()
+    }
+    if data['is_taken']:
+        data['error_message'] = 'A user with this username already exists.'
+    return JsonResponse(data)

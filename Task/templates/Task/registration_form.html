@@ -1,41 +1,34 @@
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-     <div class="container-fluid">
-
-      <div class="col-sm-13 col-md-7">
-
-          <div class="panel panel-default">
-
-              <div class="panel-body">
-                  <h3>Create New Account</h3>
-                  {% if error_message %}
-                      <p><strong>{{ error_message }} </strong></p>
-                  {% endif %}
-                  <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                      {% csrf_token %}
-
-                      {% include 'Task/form-template.html' %}
-                      <div class="form-group">
-                          <div class="col-sm-offset-2 col-sm-10">
-                              <button type="submit" class="btn btn-success">Submit</button>
-                          </div>
-
-                      </div>
-
-                  </form>
-              <p id="label">Already a member?</p>
-                  <a href="{% url 'login' %}" class="btn btn-default btn-block btn-large">Login</a>
-              </div>
-          </div>
-
-      </div>
-    </div>
 </head>
-<body>
 
-</body>
-</html>
+{% block javascript %}
+  <script>
+    $("#id_username").change(function () {
+      var form = $(this).closest("form");
+      $.ajax({
+        url: form.attr("data-validate-username-url"),
+        data: form.serialize(),
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken) {
+            alert(data.error_message);
+          }
+        }
+      });
+
+    });
+  </script>
+{% endblock %}
+
+{% block body %}
+    <h1>Create New Account</h1>
+    <form method="post" data-validate-username-url="{% url 'validate_username' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign up</button>
+    </form>
+    <p id="label">Already a member?</p>
+    <a href="{% url 'login' %}" class="btn btn-default btn-block btn-large">Login</a>
+{% endblock %}
