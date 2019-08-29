@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+
+
+<div class="login">
+    <h1>Login</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-block btn-large">Login</button>
+    </form>
+    <br>
+    <a href="{% url 'password_reset' %}" class="btn btn-default btn-block btn-large">Forgot Your Password?</a>
+    <p id="label">New member?</p>
+    <a href="{% url 'register' %}" class="btn btn-default btn-block btn-large">Sign Up</a>
+
+</div>
+
+</body>
+</html>

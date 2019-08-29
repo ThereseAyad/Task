@@ -1,0 +1,22 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Task password reset
+From: webmaster@localhost
+To: toota_etoo@yahoo.com
+Date: Thu, 29 Aug 2019 09:45:34 -0000
+Message-ID: <156707193472.1330.14300492537607945697@thereseayad>
+
+
+To initiate the password reset process for your tity Task Account,
+click the link below:
+
+http://127.0.0.1:8000/task/reset/(%3FPMQ%5B0-9A-Za-z_%5C-%5D+)/(%3FP59a-8cd0f3ac771b2136a920%5B0-9A-Za-z%5D%7B1,13%7D-%5B0-9A-Za-z%5D%7B1,20%7D)/
+
+If clicking the link above doesn't work, please copy and paste the URL in a new browser
+window instead.
+
+Sincerely,
+The Task Team
+
+-------------------------------------------------------------------------------
