@@ -1,25 +1,24 @@
 {% extends 'Task/base.html' %}
-<head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
-</head>
+
 <h1>{% block title %}{{ user }}'s Profile{% endblock %}</h1>
 
 {% block body %}
-        <div class="col-sm-15 col-md-10">
+    <div class="container-fluid">
+        <div class="col-sm-12 col-md-7">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <a href="{% url 'profile' %}">
                     </a>
+                    <h2> This is the Profile Page.</h2>
 
                     <h3>{{ 'Username:' }}{{ ' ' }}{{ user.username }}</h3>
-                    <h3>{{ 'Email:' }}{{ ' ' }}{{ user.email }}</h3>
-                    <h3>{{ 'Password:' }}{{ ' ' }}{{ user.password }}</h3>
-                    <hr>
+                    <h3>{{ 'Email Address:' }}{{ ' ' }}{{ user.email }}</h3>
+                    {#                    <h3>{{ 'Password:' }}{{ ' ' }}{{ user.password }}</h3>#}
+
                 </div>
             </div>
         </div>
-
+    </div>
 
 
 {% endblock %}
