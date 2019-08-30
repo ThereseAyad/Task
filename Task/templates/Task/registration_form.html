@@ -3,38 +3,44 @@
 
     <!--link css with html-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css"/>﻿
+    <link rel="stylesheet" type="text/css"/>
+    ﻿
 
 </head>
 
 <title>Register</title>
 
-    <div class="container-fluid">
+<div class="container-fluid">
 
-      <div class="col-sm-13 col-md-7">
+    <div class="col-sm-13 col-md-7">
 
-          <div class="panel panel-default">
+        <div class="panel panel-default">
 
-              <div class="panel-body">
-                  <h3>Create New Account</h3>
-              <br>
-                  {% if error_message %}
-                      <p><strong>{{ error_message }} </strong></p>
-                  {% endif %}
-                  <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                      {% csrf_token %}
+            <div class="panel-body">
+                <h3>Create New Account</h3>
+                <br>
+                {% if error_message %}
+                    <p><strong>{{ error_message }} </strong></p>
+                {% endif %}
+                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
 
-                      {% include 'Task/form-template.html' %}
-                      <div class="form-group">
-                          <div class="col-sm-offset-2 col-sm-10">
-                              <button type="submit" class="btn btn-success">Submit</button>
-                          </div>
-                      </div>
+                    {% include 'Task/form-template.html' %}
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                            <br>
+                            <br>
+                            <p id="label">Already a member?</p>
+                        <a href="{% url 'login' %}" class="btn btn-default btn-large">Login</a>
+                        </div>
 
-                  </form>
-              </div>
-          </div>
+                    </div>
 
-      </div>
+                </form>
+            </div>
+        </div>
+
     </div>
+</div>
 
