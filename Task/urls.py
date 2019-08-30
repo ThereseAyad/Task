@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 from django.contrib.auth import views as auth_views
 
@@ -15,15 +15,12 @@ urlpatterns= [
         name='password_reset'),
     path('reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='Task/password_reset_done.html'),
         name='password_reset_done'),
-    path('reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
+    re_path('reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         auth_views.PasswordResetConfirmView.as_view(template_name='Task/password_reset_confirm.html'),
         name='password_reset_confirm'),
     path('reset/complete/', auth_views.PasswordResetCompleteView.as_view(template_name='Task/password_reset_complete.html'),
         name='password_reset_complete'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('ajax/validate_username/', views.validate_username, name='validate_username'),
-    path('ajax/', views.index, name="index"),
-    path('insert/', views.insert, name="insert"),
     path('distance/', views.distance, name='distance'),
 
 ]

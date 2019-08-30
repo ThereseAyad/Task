@@ -73,26 +73,6 @@ def simple_upload(request):
     return render(request, 'Task/simple_upload.html')
 
 
-def validate_username(request):
-    username = request.GET.get('username', None)
-    data = {
-        'is_taken': User.objects.filter(username__iexact=username).exists()
-    }
-    if data['is_taken']:
-        data['error_message'] = 'A user with this username already exists.'
-    return JsonResponse(data)
-
-
-def index(request):
-    return render(request, 'Task/ajax.html')
-
-
-def insert(request, self):
-    member = User
-    member.save(self)
-    return redirect('home')
-
-
 def distance(request):
     template_name = 'Task/distance.html'
     form = DistanceForm(None)
