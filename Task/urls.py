@@ -1,10 +1,9 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 
 
 urlpatterns= [
-    #/login/
     path('login/', auth_views.LoginView.as_view(template_name='Task/login.html'), name='login'),
     path('register/', views.UserFormView.as_view(), name='register'),
     path('home/', views.home, name='home'),
@@ -23,4 +22,8 @@ urlpatterns= [
         name='password_reset_complete'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('ajax/validate_username/', views.validate_username, name='validate_username'),
+    path('ajax/', views.index, name="index"),
+    path('insert/', views.insert, name="insert"),
+    path('distance/', views.distance, name='distance'),
+
 ]

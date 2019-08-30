@@ -1,23 +1,14 @@
-<head>
-    <meta charset="UTF-8">
-
-    <!--link css with html-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css"/>﻿
-
-</head>
-
-<title>Register</title>
-
+{% extends 'Task/base.html' %}
+{% block title %}Distance{% endblock %}
+{% block body %}
     <div class="container-fluid">
 
-      <div class="col-sm-13 col-md-7">
+      <div class="col-sm-12 col-md-7">
 
           <div class="panel panel-default">
 
               <div class="panel-body">
-                  <h3>Create New Account</h3>
-              <br>
+                  <h3>Enter places' names</h3>
                   {% if error_message %}
                       <p><strong>{{ error_message }} </strong></p>
                   {% endif %}
@@ -27,7 +18,7 @@
                       {% include 'Task/form-template.html' %}
                       <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10">
-                              <button type="submit" class="btn btn-success">Submit</button>
+                              <button type="submit" class="btn btn-success">Show road</button>
                           </div>
                       </div>
 
@@ -37,4 +28,4 @@
 
       </div>
     </div>
-
+{% endblock %}

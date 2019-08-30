@@ -10,11 +10,6 @@
     {% load staticfiles %}
     <!--the arrangement of the 5 next lines is important!-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     ﻿
 </head>
 
@@ -40,9 +35,20 @@
                         <span class="" aria-hidden="true"></span>&nbsp; Profile
                     </a>
                 </li>
+                <li {% if request.resolver_match.url_name == 'upload' %}class="active"{% endif %}>
+                    <a href="{% url 'upload' %}">
+                        <span class="" aria-hidden="true"></span>&nbsp; Upload File
+                    </a>
+                </li>
+                <li {% if request.resolver_match.url_name == 'distance' %}class="active"{% endif %}>
+                    <a href="{% url 'distance' %}">
+                        <span class="" aria-hidden="true"></span>&nbsp;Show Distance
+                    </a>
+                </li>
+
             </ul>
 
-        <!--action="." This tells django to do the GET action in the same URL as you are-->
+            <!--action="." This tells django to do the GET action in the same URL as you are-->
             <!--items on right side-->
             <ul class="nav navbar-nav navbar-right">
                 <!--logout item-->

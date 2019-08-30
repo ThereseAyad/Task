@@ -1,7 +1,8 @@
+from urllib.parse import quote
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.shortcuts import render, redirect
-from .forms import UserForm
+from .forms import UserForm, DistanceForm
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User
 from .serializers import UserSerializer
@@ -80,3 +81,28 @@ def validate_username(request):
     if data['is_taken']:
         data['error_message'] = 'A user with this username already exists.'
     return JsonResponse(data)
+
+
+def index(request):
+    return render(request, 'Task/ajax.html')
+
+
+def insert(request, self):
+    member = User
+    member.save(self)
+    return redirect('home')
+
+
+def distance(request):
+    template_name = 'Task/distance.html'
+    form = DistanceForm(None)
+
+    if request.method == 'POST':
+        form = DistanceForm(request.POST)
+        if form.is_valid():
+            From = form.cleaned_data['From']
+            To = form.cleaned_data['To']
+            From = quote(From)
+            To = quote(To)
+            return redirect("https://www.google.com/maps/dir/?api=1&origin=" + From + "&destination=" + To)
+    return render(request, template_name, {'form': form})

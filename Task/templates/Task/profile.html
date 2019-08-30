@@ -3,29 +3,23 @@
     <meta charset="UTF-8">
     <title>Profile</title>
 </head>
-<h1>{% block title %}{{ user }}{% endblock %}</h1>
+<h1>{% block title %}{{ user }}'s Profile{% endblock %}</h1>
 
 {% block body %}
+        <div class="col-sm-15 col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'profile' %}">
+                    </a>
 
-    <div class="panel panel-default">
-        <div class="col-sm-6 col-sm-offset-8">
+                    <h3>{{ 'Username:' }}{{ ' ' }}{{ user.username }}</h3>
+                    <h3>{{ 'Email:' }}{{ ' ' }}{{ user.email }}</h3>
+                    <h3>{{ 'Password:' }}{{ ' ' }}{{ user.password }}</h3>
+                    <hr>
+                </div>
+            </div>
         </div>
 
-        <div class="panel-body">
-            <a href="{% url 'profile' %}">
-            </a>
-
-            <h3>{{ 'Username:' }}{{ ' ' }}{{ user.username }}</h3>
-            <h3>{{ 'Email:' }}{{ ' ' }}{{ user.email }}</h3>
-            <h3>{{ 'Password:' }}{{ ' ' }}{{ user.password }}</h3>
-
-            <hr>
-
-            <p id="label">Upload File?</p>
-            <a href="{% url 'upload' %}" class="btn btn-default btn-block btn-large">Browse..</a>
-
-        </div>
-    </div>
 
 
 {% endblock %}
